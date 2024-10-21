@@ -1,0 +1,20 @@
+10:37 PM 5/13/2003
+The pleasures of sharing code!
+The most contributing member has been Matitiahu Allouche, who suggested:
+
+(1) I do something, about the MD5 Key (which maybe actually disguised Credit Card info etc), to protect the user's privacy.
+Very true, but the REASON why I am sending the MD5 AND the Hardware Data (though the MD5 is JUST the digest of the Hardware Data itself), is to complete each other's integrity - the publisher can cross check the Hardware data and MD5 to see
+that both are the SAME - hence, there's no scope of data corruption/tampering as that can be easily detected.
+As for the MD5 being malacious (and as he rightfully pointed out, someone can actually steal the user's Credit Card no and pass it off as HardwareID  - well, the tool is open source! If the user is suspicious, he can inspcet it himself to see what is going on!
+Hope that the problems are cleared at this aspect.
+
+(2) Instead of letting the program crash without giving the user a reason, I show him a error message.
+Now, this idea is REALLY good - thanks ! It actually NEVER occured to me ;)
+Well, we cannot give anything which can compromise the protection system as a check condition, which can help the loader ascretain if the machine is the correct one or not, so what we do is
+to keep the MD5 of the decrypted code section in a separate file named "code_sig.sig", and before writing the real code section into the protected PE File, we compare the MD5 of the decrypted "code_sec.dat" with that in "code_sig.sig". If they are the same, we proceed to
+write the decrypted code section into the process memory, else we display the message "This machine is not authorised to run this program. Please contact the software publisher at [contact details here] to authorise."
+
+This is exactly what is implemented in this Update of the protection systm - if anybody has a better idea please inform :)
+
+Thanks again to Matitiahu Allouche for his GREAT suggestions !
+
